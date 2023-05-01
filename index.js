@@ -3,11 +3,12 @@ const app = express();
 const http = require("http");
 const cors = require("cors");
 const {Server} = require("socket.io");
+require('dotenv').config();
 app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server,{
     cors:{
-        origin:"http://localhost:5173", // here is the server where the data came from, we must put whit a enviroment variables
+        origin:process.env.ORIGIN, // here is the server where the data came from, we must put whit a enviroment variables
         methods:["GET","POST"]
     }
 });
